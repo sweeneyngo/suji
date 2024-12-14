@@ -1,0 +1,26 @@
+.num-button {
+    width: 42px;
+    height: 88.25px;
+    border: 2px solid var(--dark-gray);
+    border-radius: 5px;
+    margin: 5px 1.5px;
+
+    color: var(--dark-gray);
+    font-size: 1.25em;
+    font-family: var(--jpn-font);
+}
+
+.num-button:hover {
+    color: var(--black);
+    border-color: var(--black);
+}
+
+.selected {
+    background-color: var(--active);
+    border-color: var(--active-border);
+    color: var(--active-border);
+}
+
+.selected:hover {
+    border-color: var(--active-border);
+}

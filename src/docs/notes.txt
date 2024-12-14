@@ -1,0 +1,28 @@
+- sudoku explainer https://sourceforge.net/p/sudoku-explainer/
+- sudoku wiki: https://www.sudokuwiki.org/
+    - for explaining techniques: https://www.sudokuwiki.org/Getting_Started
+- interactive learning coach: https://sudoku.coach/
+
+
+sudoku generator
+https://qqwing.com/generate.html
+
+backtracking (DFS)
+https://en.wikipedia.org/wiki/Sudoku_solving_algorithms
+
+constraint satisfaction candidate-checking
+https://pi.math.cornell.edu/~mec/Summer2009/meerkamp/Site/Solving_any_Sudoku_I.html
+
+constraint satisfaction (place-finding)
+https://pi.math.cornell.edu/~mec/Summer2009/meerkamp/Site/Solving_any_Sudoku_I.html
+
+crook's algorithm
+https://www.ams.org/notices/200904/tx090400460p.pdf
+https://pi.math.cornell.edu/~mec/Summer2009/meerkamp/Site/Solving_any_Sudoku_II.html
+
+knuth's algorithm (dancing links)
+http://www.ocf.berkeley.edu/~jchu/publicportal/sudoku/0011047.pdf
+http://www.ocf.berkeley.edu/~jchu/publicportal/sudoku/sudoku.paper.html
+
+pattern overlay/template matching
+https://en.wikipedia.org/wiki/Sudoku_solving_algorithms

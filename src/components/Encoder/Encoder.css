@@ -1,0 +1,48 @@
+.encoder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.encoder-textbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid var(--gray);
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: var(--num-font);
+    font-weight: 100;
+}
+
+.encoder-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    padding: 0 10px;
+    margin-left: 10px;
+    border: 1px solid var(--gray);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.25s;
+}
+
+.encoder-button:hover {
+    background-color: var(--disabled);
+}
+
+.encoder-disabled {
+    background-color: var(--disabled);
+    cursor: not-allowed;
+}
+
+.reverse {
+    transform: rotate(180deg);
+}

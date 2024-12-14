@@ -1,0 +1,31 @@
+.notification {
+    position: fixed;
+    width: 400px;
+    max-width: 400px;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    background-color: rgba(0, 255, 0, 0.2);
+    color: green;
+    padding: 10px 0;
+    border-radius: 5px;
+    border: 1px solid green;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 1;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    font-family: var(--latin-font);
+}
+
+/* Slide-in effect */
+.notification.slide-in {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+/* Slide-out effect */
+.notification.slide-out {
+    transform: translateX(-50%) translateY(100%);
+    opacity: 0;
+}
