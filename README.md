@@ -8,10 +8,11 @@ The application is written in Typescript + [React](https://react.dev/) and built
 
 <p align="center">
 <a href="https://ifuxyl.dev/suji">
-<img src="https://i.imgur.com/37UwiuO.png" width="800"><br>
+<img src="https://i.imgur.com/V3YbtO3.png"><br>
 <sup><strong>ifuxyl.dev/suji</a></strong></sup>
 </p>
 
+## Algorithms
 As of this implementation, the following Sudoku solving algorithms are available:
 
 **Backtracking**
