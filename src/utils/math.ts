@@ -38,15 +38,6 @@ function getCombinations(arr: Position[], k: number): Position[][] {
     return result;
 }
 
-// Create a bitmask from the combination of positions.
-function createBitmask(combination: Position[]): number {
-    let bitmask = 0;
-    for (const pos of combination) {
-        bitmask |= 1 << (pos.row * 9 + pos.col);
-    }
-    return bitmask;
-}
-
 // Compare two sets of equal matching values.
 function isSetsEqual(setA: Set<number>, setB: Set<number>): boolean {
     if (setA.size !== setB.size) return false;
@@ -68,7 +59,6 @@ function getTwoDistinctValues(length: number): [number, number] {
 export {
     convertIndexToPosition,
     getCombinations,
-    createBitmask,
     isSetsEqual,
     getTwoDistinctValues
 };

@@ -1,5 +1,5 @@
 
-import { GridCell, ValidIndex, ValidDigit, ValidSubgridIndex, Position } from '../types/types';
+import { Bit, GridCell, ValidIndex, ValidDigit, ValidSubgridIndex, Position } from '../types/types';
 import { isValidDigit } from './validate';
 import { getCombinations, isSetsEqual, getTwoDistinctValues } from './math';
 import { createBitmask, setBit } from './bit';
@@ -269,23 +269,17 @@ function generateValidPatterns(grid: GridCell[][], digit: ValidDigit): Uint8Arra
 
     const emptyCells = findEmptyCells(grid);  // Find the empty cells in the grid
     const validPatterns: Uint8Array[] = [];
+
     const numDigits = 9 - countExistingDigits(grid, digit);  // Count how many times the digit already appears
-    if (numDigits === 0) return validPatterns
+    if (numDigits === 0) return validPatterns;
 
     const combinations = getCombinations(emptyCells, numDigits);
-
-    // Check each combination and generate a bitmask if the pattern is valid
     for (const combination of combinations) {
-        if (isValidPlacement(grid, combination, digit)) {
-
-            // Place bits
+        if (isValidPattern(grid, combination, digit)) {
             const bitmask = createBitmask();
-            for (const cell of combination) {
-                const index = cell.row * 9 + cell.col;
-                setBit(bitmask, index);
+            for (const { row, col } of combination) {
+                setBit(bitmask, row * 9 + col);
             }
-
-            // Store the valid bitmask pattern
             validPatterns.push(bitmask);
         }
     }
@@ -307,14 +301,44 @@ function countExistingDigits(grid: GridCell[][], digit: ValidDigit): number {
 }
 
 // Helper function to check if a digit can be placed in a given combination of empty cells
-function isValidPlacement(grid: GridCell[][], combination: Position[], digit: ValidDigit): boolean {
-    const newGrid = grid.map(row => row.map(cell => ({ ...cell })));
-    for (const cell of combination) {
-        newGrid[cell.row][cell.col].value = digit;
+function isValidPattern(grid: GridCell[][], combination: Position[], digit: ValidDigit): boolean {
+
+    const bitmask = createBitmask();
+    const [rowMasks, colMasks, subgridMasks] = createMasks(grid);
+
+    for (const { row, col } of combination) {
+        const bit = 1 << (digit - 1);
+        if ((rowMasks[row] & bit) || (colMasks[col] & bit) || (subgridMasks[Math.floor(row / 3) * 3 + Math.floor(col / 3)] & bit)) {
+            return false;
+        }
+        setBit(bitmask, row * 9 + col);
     }
 
-    return verifyGrid(newGrid);
+    return true;
 }
+
+// Helper function to create the masks for the row, column, and subgrid
+function createMasks(grid: GridCell[][]): [Bit[], Bit[], Bit[]] {
+    const rowMasks: Bit[] = Array.from({ length: 9 }, () => 0);
+    const colMasks: Bit[] = Array.from({ length: 9 }, () => 0);
+    const subgridMasks: Bit[] = Array.from({ length: 9 }, () => 0);
+
+    for (let r = 0; r < 9; r++) {
+        for (let c = 0; c < 9; c++) {
+            const cell = grid[r][c];
+            if (isValidDigit(cell.value)) {
+                const bit = 1 << (cell.value - 1);
+                rowMasks[r] |= bit;
+                colMasks[c] |= bit;
+                const subgridIndex = Math.floor(r / 3) * 3 + Math.floor(c / 3);
+                subgridMasks[subgridIndex] |= bit;
+            }
+        }
+    }
+
+    return [rowMasks, colMasks, subgridMasks];
+}
+
 
 // Helper function to create a random grid filled with remaining empty cells
 function createRandomGrid(grid: GridCell[][]): GridCell[][] {

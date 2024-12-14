@@ -10,6 +10,8 @@ export type ValidIndex = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 // Type definition for a 3x3 subgrid in a Sudoku grid
 export type ValidSubgridIndex = 0 | 1 | 2;
 
+export type Bit = 0 | 1;
+
 // Type definition for position (row, column) in a Sudoku grid
 export type Position = {
     row: ValidIndex;
